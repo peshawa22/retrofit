@@ -11,21 +11,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 Future<Album>fetchAlbum()async{
-  final client = ApiClient(Dio(BaseOptions(
-    contentType: 'application/json'
-  )));
-  try{
-    final response = await client.getAlbum();
-        return response;
-  }catch(e){
-    throw Exception('failed');
-  }
+  final client = ApiClient(Dio(BaseOptions(contentType: 'application/json')));
+  final response = await client.getClient();
+  return response;
 }
 
 class _HomePageState extends State<HomePage> {
   String id='no id';
   String body = 'no body';
   String title='no title';
+  String appId = 'no appId';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,10 +33,13 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 10,),
           Text(body,style: const TextStyle(color: Colors.blue)),
           const SizedBox(height: 10,),
+          Text(appId,style: const TextStyle(color: Colors.yellow)),
+          const SizedBox(height: 10,),
           Center(
             child: ElevatedButton(onPressed: (){
               fetchAlbum().then((value)async {
                 setState(() {
+                  appId = value.userId.toString();
                   id = value.id.toString();
                   title = value.title.toString();
                   body = value.body.toString();

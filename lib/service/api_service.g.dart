@@ -13,7 +13,7 @@ class _ApiClient implements ApiClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://jsonplaceholder.typicode.com';
+    baseUrl ??= 'https://jsonplaceholder.typicode.com/';
   }
 
   final Dio _dio;
@@ -21,7 +21,7 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<Album> getAlbum() async {
+  Future<Album> getClient() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

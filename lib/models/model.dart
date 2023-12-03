@@ -1,10 +1,10 @@
 class Album{
+  final int id ;
   final int userId;
-  final int id;
-  final String title;
   final String body;
-  const Album({required this.body, required this.id,required this.title,required this.userId});
+  final String title;
+  Album({required this.body,required this.title,required this.id,required this.userId});
   factory Album.fromJson(Map<String,dynamic>json){
-    return Album( id: json['id'], title: json['title'], userId: json['userId'], body: json['body']);
+    return Album(body: json['body'], title: json['title'], id: json['id'], userId: json['userId']);
   }
 }
